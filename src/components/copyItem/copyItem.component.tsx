@@ -21,7 +21,7 @@ export const CopyItem = ({ originalLink, shortenedLink }: ICopyItemProps) => {
         <p className="text-[#2bd0d0]">{shortenedLink}</p>
         <div
           onClick={() => handleCopyClick(shortenedLink)}
-          className={`rounded-[5px] py-2 text-white text-center px-4 self-center w-full transition-all ease-in-out ${isCopied ?'bg-[#3A3054]':'bg-[#2bd0d0] cursor-pointer hover:bg-[#9ae3e3]'}`}
+          className={`rounded-[5px] py-2 text-white text-center px-4 self-center w-full transition-all ease-in-out min-w-[103px] ${isCopied ?'bg-[#3A3054]':'bg-[#2bd0d0] cursor-pointer hover:bg-[#9ae3e3]'}`}
         >
           {isCopied? 'Copied!':'Copy'}
         </div>
