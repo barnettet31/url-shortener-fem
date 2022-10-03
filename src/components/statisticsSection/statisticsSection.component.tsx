@@ -35,8 +35,10 @@ export const StatisticsSection = () => {
         showHead={false}
         color="#2BD0D0"
         strokeWidth={8}
+        
+       
         />
-        <div  className="flex flex-col w-[327px] h-[289px] lg:w-[350px] lg:h-[311px] relative">
+        <div  className="flex flex-col w-[327px] h-[289px] lg:w-[350px] lg:h-[311px] relative lg:mt-[44px]">
           <div className=" absolute -top-[44px] left-[120px] lg:left-[53px] w-[88px] h-[88px] rounded-full bg-[#3A3054] flex items-center justify-center">
             <img
               src={`${process.env.PUBLIC_URL} ./images/icon-detailed-records.svg`}
@@ -58,7 +60,7 @@ export const StatisticsSection = () => {
         color="#2BD0D0"
         strokeWidth={8}
         />
-        <div className="flex flex-col w-[327px] h-[289px] lg:w-[350px] lg:h-[311px] relative">
+        <div className="flex flex-col w-[327px] h-[289px] lg:w-[350px] lg:h-[311px] relative lg:mt-[88px]">
           <div className=" absolute -top-[44px] left-[120px] lg:left-[53px] w-[88px] h-[88px] rounded-full bg-[#3A3054] flex items-center justify-center">
             <img
               src={`${process.env.PUBLIC_URL} ./images/icon-fully-customizable.svg`}
