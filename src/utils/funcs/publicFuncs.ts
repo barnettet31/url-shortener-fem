@@ -1,0 +1,1 @@
+export const returnImageLocation =(filePath:string):string=>`${process.env.PUBLIC_URL}${filePath}`;

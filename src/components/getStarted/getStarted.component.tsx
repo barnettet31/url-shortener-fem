@@ -1,3 +1,5 @@
+import { returnImageLocation } from "../../utils/funcs/publicFuncs";
+
 interface IGetStartedProps{
     signedIn:boolean;
 }
@@ -6,9 +8,7 @@ export const GetStarted = ({signedIn}:IGetStartedProps)=>{
         <div className="max-w-[1108px] mx-auto mt-2 w-[95%]">
         <div className="flex flex-col lg:items-center lg:flex-row gap-9 lg:gap-[100px]">
           <img
-            src={
-              process.env.PUBLIC_URL + "/images/illustration-working.svg"
-            }
+            src={returnImageLocation("/images/illustration-working.svg")}
             alt=""
             className="ml-6 lg:ml-0 lg:mr-[-123px] min-w-[511px] lg:min-w-[733px] lg:order-2"
           />

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { returnImageLocation } from "../../utils/funcs/publicFuncs";
 import { Hamburger } from "../hamburger/hamburger.component";
 
 export const Header = () => {
@@ -8,7 +9,7 @@ export const Header = () => {
   return (
     <header className="relative flex items-center justify-between px-6 pt-10 lg:max-w-[1100px] mx-auto lg:px-0">
       <img
-        src={`${process.env.PUBLIC_URL + "./images/logo.svg"}`}
+        src={returnImageLocation("./images/logo.svg")}
         alt="shortly logo"
       />
       <Hamburger onClick={handleToggleMenu} />
