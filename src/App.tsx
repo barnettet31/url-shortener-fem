@@ -9,7 +9,6 @@ import { Resources } from "./routes/resources/resources.route";
 function App() {
   const [isSignedIn, setIsSignedIn] = useState(false);
   return (
-   
   <Routes>
     <Route element={<NavWrapper/>}>
       <Route  index={true} element={<Home isSignedIn={isSignedIn}/>}/>
