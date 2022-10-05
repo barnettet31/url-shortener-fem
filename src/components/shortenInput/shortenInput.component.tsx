@@ -9,7 +9,10 @@ const URL =
 const DomainSchema = Yup.object().shape({
   domainName: Yup.string().matches(URL, "Please add a link."),
 });
-export const ShortenInput = () => {
+interface IShortenInputProps {
+  handleSubmit:(link:string)=>void;
+}
+export const ShortenInput = ({handleSubmit}:IShortenInputProps) => {
   const initialValues: InputValues = {
     domainName: "",
   };
@@ -18,7 +21,7 @@ export const ShortenInput = () => {
       <Formik
         initialValues={initialValues}
         onSubmit={(values, actions) => {
-          console.log({ values, actions });
+         handleSubmit(values.domainName);
         }}
         validationSchema={DomainSchema}
       >

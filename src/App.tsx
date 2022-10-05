@@ -9,7 +9,7 @@ import { Resources } from "./routes/resources/resources.route";
 function App() {
   const [isSignedIn, setIsSignedIn] = useState(false);
   return (
-    <HashRouter>
+   
   <Routes>
     <Route element={<NavWrapper/>}>
       <Route  index={true} element={<Home isSignedIn={isSignedIn}/>}/>
@@ -17,7 +17,7 @@ function App() {
       <Route path="/pricing" element={<Pricing/>}/>
       <Route path="/resources" element={<Resources/>}/>
     </Route>
-  </Routes></HashRouter>
+  </Routes>
   );
 }
 
