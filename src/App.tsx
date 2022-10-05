@@ -40,14 +40,16 @@ function App() {
       </main>
       <footer
         id="resources"
-        className="bg-[#232127] py-14 lg:py-18 flex flex-col items-center gap-12 lg:flex-row justify-between"
+        className="bg-[#232127] py-14 lg:py-18"
       >
+        <div className="flex flex-col items-center gap-12 justify-between lg:flex-row max-w-[1108px] mx-auto lg:items-start">
+        <div className="flex flex-col items-start justify-start lg:self-start lg:w-1/5">
         <img
           src={returnImageLocation("/images/logo-white.svg")}
           alt="logo white"
-          className="lg:w-1/5"
-        />
-        <div className="flex flex-col justify-between text-center lg:flex-row lg:w-3/5">
+          className=""
+        /></div>
+        <div className="flex flex-col justify-between text-center lg:text-left lg:flex-row lg:w-3/5">
           <div className="flex flex-col gap-[10px] mb-10">
             <p className="mb-3 text-white text-bold">Features</p>
             <a href="#">
@@ -108,23 +110,12 @@ function App() {
             </a>
           </div>
         </div>
-        <div className="flex lg:w-1/5">
-          <img
-            src={returnImageLocation("/images/icon-facebook.svg")}
-            alt="facebook icon"
-          />
-           <img
-            src={returnImageLocation("/images/icon-twitter.svg")}
-            alt="twitter icon"
-          />
-           <img
-            src={returnImageLocation("/images/icon-pinterest.svg")}
-            alt="pintrest icon"
-          />
-           <img
-            src={returnImageLocation("/images/icon-instagram.svg")}
-            alt="instagram icon"
-          />
+        <div className="flex gap-6 lg:w-1/5">
+              <div className="w-6 h-6 bg-no-repeat bg-facebook icon-hover "></div>
+              <div className="w-6 h-6 bg-no-repeat bg-twitter icon-hover"></div>
+              <div className="w-6 h-6 bg-no-repeat bg-pintrest icon-hover"></div>
+              <div className="w-6 h-6 bg-no-repeat bg-instagram icon-hover"></div>
+        </div>
         </div>
       </footer>
     </>
