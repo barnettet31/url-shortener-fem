@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { HashRouter, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import { NavWrapper } from "./components/navWrapper/navWrapper.component";
+import { Company } from "./routes/company/company.route";
 import { Features } from "./routes/features/features.route";
 import { Home } from "./routes/home/home.route";
 import { Pricing } from "./routes/pricing/pricing.route";
@@ -15,6 +16,7 @@ function App() {
       <Route path="/features" element={<Features/>}/>
       <Route path="/pricing" element={<Pricing/>}/>
       <Route path="/resources" element={<Resources/>}/>
+      <Route path="/company" element={<Company/>}/>
     </Route>
   </Routes>
   );
