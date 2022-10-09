@@ -19,37 +19,11 @@ const validationSchema = Yup.object().shape({
     .required()
     .oneOf([Yup.ref("password"), null], "Your passwords must match"),
 });
-export const SignUpForm = () => {
-  const inputs = [
-    {
-      required: true,
-      labelText: "Display Name",
-      name: "displayName",
-      placeholder: "Please enter your display name",
-      type: "text",
-    },
-    {
-      required: true,
-      labelText: "Email",
-      name: "email",
-      placeholder: "Please enter email",
-      type: "email",
-    },
-    {
-      required: true,
-      labelText: "Password",
-      name: "password",
-      placeholder: "Please enter your password",
-      type: "password",
-    },
-    {
-      required: true,
-      labelText: "Confirm Password",
-      name: "confirmPassword",
-      placeholder: "Please confirm your password",
-      type: "password",
-    },
-  ];
+interface ISignUpFormToggle {
+  handleSignUpFormToggle:()=>void;
+}
+export const SignUpForm = ({handleSignUpFormToggle}:ISignUpFormToggle) => {
+
   const initialValues: ISignUpValues = {
     username: "",
     email: "",
@@ -61,10 +35,16 @@ export const SignUpForm = () => {
   };
 
   return (
-    <div className="max-w-lg px-8 py-6 mx-auto bg-white rounded-lg shadow-sm ">
-      <h1 className="text-3xl font-bold text-center text-[#2bd0d0] mb-4">
+    <div className="relative w-11/12 max-w-lg px-8 py-6 mx-auto bg-white rounded-lg shadow-sm lg:max-w-xl">
+      <div className="flex justify-center gap-5">
+        <h1 className="text-xl lg:text-2xl font-bold text-center text-[#2bd0d0] mb-4">
         Sign up for Shortly
       </h1>
+      <svg onClick={handleSignUpFormToggle} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="absolute w-6 h-6 cursor-pointer top-7 right-6">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+
+      </div>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}

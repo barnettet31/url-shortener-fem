@@ -1,16 +1,24 @@
 import { SignUpForm } from "../../components/sign-up/signUpForm.component";
-interface ISignUp{
-    isShown:boolean;
+interface ISignUp {
+  isShown: boolean;
+  handleToggleShow: () => void;
 }
-export const SignUp = ({isShown}:ISignUp) => {
-
+export const SignUp = ({ isShown, handleToggleShow }: ISignUp) => {
   //TODO handle transition in shown condition
-  //TODO wrap in a container to hide background 
+  //TODO wrap in a container to hide background
   return (
-
-      <aside className={`fixed top-0 left-0 justify-center w-screen h-screen items center ease-in-out ${isShown ? 'flex flex-col opacity-100 scale-y-100':'hidden opacity-70 scale-y-75'}`}>
-        <SignUpForm />
-      </aside>
- 
+    <div
+      className={`fixed z-20 top-0 bottom-0 flex flex-col h-screen w-screen justify-center items-center align-items start bg-slate-800/75 ${
+        isShown ? "block" : "hidden"
+      }`}
+    >
+      <div
+        className={`transition-all max-w-lg ease-in-out duration-300 ${
+          isShown ? "opacity-100 scale-y-100" : "hidden opacity-70 scale-y-75"
+        }`}
+      >
+        <SignUpForm handleSignUpFormToggle={handleToggleShow} />
+      </div>
+    </div>
   );
 };

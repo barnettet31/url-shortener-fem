@@ -12,7 +12,7 @@ export const NavWrapper = () => {
       <Header handleShowSignUp={handleShowSignUp} />
       <Outlet />
       <Footer />
-      <SignUp isShown={signUpShown}/>
+      <SignUp handleToggleShow={handleShowSignUp} isShown={signUpShown}/>
     </>
   );
 };

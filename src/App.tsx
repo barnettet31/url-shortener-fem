@@ -1,5 +1,3 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 
@@ -9,7 +7,6 @@ import { Features } from "./routes/features/features.route";
 import { Home } from "./routes/home/home.route";
 import { Pricing } from "./routes/pricing/pricing.route";
 import { Resources } from "./routes/resources/resources.route";
-import { SignUp } from "./routes/signup/signUp.route";
 function App() {
   return (
   <Routes>
