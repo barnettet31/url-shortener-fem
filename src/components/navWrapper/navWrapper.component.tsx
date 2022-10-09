@@ -1,13 +1,18 @@
-import React from "react"
+import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
-import { Footer } from "../footer/footer.component"
-import { Header } from "../header/header.component"
+import { SignUp } from "../../routes/signup/signUp.route";
+import { Footer } from "../footer/footer.component";
+import { Header } from "../header/header.component";
 
-export const NavWrapper = ()=>{
-    return(
-        <>        <Header/>
-        <Outlet/>
-        <Footer/></>
-
-    )
-}
+export const NavWrapper = () => {
+  const [signUpShown, setSignUpShown] = useState(false);
+  const handleShowSignUp = ()=> setSignUpShown(!signUpShown);
+  return (
+    <>
+      <Header handleShowSignUp={handleShowSignUp} />
+      <Outlet />
+      <Footer />
+      <SignUp isShown={signUpShown}/>
+    </>
+  );
+};

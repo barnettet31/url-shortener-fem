@@ -1,12 +1,19 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { createUserDocumentFromAuth, signInWithGooglePopUp } from "../../utils/firebase/firebase.utils";
 import { returnImageLocation } from "../../utils/funcs/publicFuncs";
 import { Hamburger } from "../hamburger/hamburger.component";
-
-export const Header = () => {
+interface IHeaderProps {
+  handleShowSignUp:()=>void;
+}
+export const Header = ({handleShowSignUp}:IHeaderProps) => {
     const [open, setOpen] = useState(false);
     const handleToggleMenu = ()=> setOpen(!open);
-  
+    const logGoogleUser = async()=>{
+      const response = await signInWithGooglePopUp();
+      createUserDocumentFromAuth(response.user);
+
+    }
   return (
     <header className="relative flex items-center justify-between px-6 pt-10 lg:max-w-[1100px] mx-auto lg:px-0">
       <Link to="/"><img
@@ -27,15 +34,19 @@ export const Header = () => {
           </Link>
         </ul>
         <ul className="flex flex-col items-center justify-between gap-[30px] lg:gap-9 lg:justify-center py-8 lg:w-auto w-[85%]  lg:flex-row">
-          <p onClick={()=>console.log('login')} className="w-[85%] self-center text-center lg:hover:text-black cursor-pointer">
+          <p onClick={logGoogleUser} className="w-[85%] self-center text-center lg:hover:text-black cursor-pointer">
             <li>Login</li>
           </p>
-          <div
-            
+          <button
+       
+            onClick={()=>{
+              handleToggleMenu();
+              handleShowSignUp();
+            }}
             className=" cursor-pointer w-full h-full block lg:inline lg:w-auto lg:px-6 text-center py-3 bg-[#2bd0d0] rounded-[28px] lg:text-white hover:bg-[#9AE3E3] lg:py-1"
           >
             <li>SignUp</li>
-          </div>
+          </button>
         </ul>
       </nav>
     </header>
