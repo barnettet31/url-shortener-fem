@@ -21,8 +21,9 @@ const validationSchema = Yup.object().shape({
 });
 interface ISignUpFormToggle {
   handleSignUpFormToggle:()=>void;
+  handleSubmit:(values:any)=>void;
 }
-export const SignUpForm = ({handleSignUpFormToggle}:ISignUpFormToggle) => {
+export const SignUpForm = ({handleSignUpFormToggle, handleSubmit}:ISignUpFormToggle) => {
 
   const initialValues: ISignUpValues = {
     username: "",
