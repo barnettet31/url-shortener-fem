@@ -12,7 +12,7 @@ export const SignUp = ({ isShown, handleToggleShow }: ISignUp) => {
   }
   return (
     <div
-      className={`fixed z-20 top-0 bottom-0 flex flex-col h-screen w-screen justify-center items-center align-items start bg-slate-800/75 ${
+      className={`fixed z-20 top-0 flex flex-col h-screen w-screen justify-center items-center align-items start bg-slate-800/75 ${
         isShown ? "block" : "hidden"
       }`}
     >

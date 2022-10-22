@@ -31,6 +31,7 @@ export const SignInForm = ({
   };
   const handleSignInSubmit = function (values: ISignInValues) {
     handleSubmit(values);
+    handleSignInFormToggle();
   };
 const googleSignInHandler = ()=>{
   handleSignInFormToggle();
@@ -63,7 +64,10 @@ const googleSignInHandler = ()=>{
       <Formik
         initialValues={initialValues}
         validationSchema={SignInSchema}
-        onSubmit={(values:ISignInValues)=>handleSignInSubmit(values)}
+        onSubmit={(values:ISignInValues, {resetForm})=>{
+          handleSignInSubmit(values);
+          resetForm();
+        }}
       >
        
           <Form className="flex flex-col gap-6 mt-4">

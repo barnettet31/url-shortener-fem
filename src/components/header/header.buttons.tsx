@@ -11,7 +11,7 @@ export const LogInSignUpButtons = ({handleAuthClick, handleShowSignIn, handleSho
             <li>Login</li>
           </p>
           <button
-       
+            id="sigup-button"
             onClick={()=>handleAuthClick(handleShowSignUp)}
             className=" cursor-pointer w-full h-full lg:px-4 text-center py-3 bg-[#2bd0d0] rounded-[28px] lg:text-white hover:bg-[#9AE3E3] lg:py-1"
           >

@@ -12,15 +12,22 @@ export const BoostLinks = ({ isSignedIn }: IBoostLinks) => {
         Boost your links today
       </h3>
       {isSignedIn ? (
-        <a
-          href="#shorten-links"
+        <div
+          onClick={()=>{
+
+          }}
           className="py-3 px-4 bg-[#2BD0D0] mx-auto lg:mx-0 cursor-pointer hover:bg-[#9AE3E3] text-white rounded-[28px]"
         >
           Start Shortening Now!
-        </a>
+        </div>
       ) : (
         <div
-          onClick={() => console.log("clicked getStarted")}
+          onClick={() => {
+            
+            const signUpButton = document.querySelector('#sigup-button') as HTMLElement;
+            window.scrollTo({top:0, behavior:'smooth'});
+            signUpButton?.click()
+          }}
           className="py-3 px-4 bg-[#2BD0D0] mx-auto lg:mx-0 cursor-pointer hover:bg-[#9AE3E3] text-white rounded-[28px]"
         >
           Get Started
