@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { BoostLinks } from "../../components/boostLinks/boostLinks.component";
 import { CopyItemList } from "../../components/copyItemList/copyItemList.component";
 import { GetStarted } from "../../components/getStarted/getStarted.component";
@@ -10,7 +9,6 @@ interface IHomeProps {
 }
 export const Home = ({ isSignedIn }: IHomeProps) => {
   const handleSubmit = (link: string) => alert(link);
-  const [items, setItems] = useState([]);
   return (
     <>
       <main>
@@ -26,7 +24,7 @@ export const Home = ({ isSignedIn }: IHomeProps) => {
         >
           <div className="mx-auto max-w-[1108px]">
             <CopyItemList
-              items={items}
+              items={[]}
             />
             <StatisticsSection />
           </div>

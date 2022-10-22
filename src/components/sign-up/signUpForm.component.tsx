@@ -1,19 +1,15 @@
 import { FormInput } from "../formInput/formInput.component";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-interface ISignUpValues {
-  username: string;
+export interface ISignUpValues {
   email: string;
   password: string;
   confirmPassword: string;
 }
-const validationSchema = Yup.object().shape({
-  username: Yup.string()
-    .length(6)
-    .required("Username is required, and must be at least 6 chracters."),
+const SignUpSchema = Yup.object().shape({
   email: Yup.string().email().required("Email is required"),
   password: Yup.string()
-    .length(8)
+    .min(8, 'password needs to be at least 8 characters long')
     .required("Password is required and must be at leats 8 characters."),
   confirmPassword: Yup.string()
     .required()
@@ -26,13 +22,13 @@ interface ISignUpFormToggle {
 export const SignUpForm = ({handleSignUpFormToggle, handleSubmit}:ISignUpFormToggle) => {
 
   const initialValues: ISignUpValues = {
-    username: "",
     email: "",
     password: "",
     confirmPassword: "",
   };
   const handleSignUpSubmit = function (values: ISignUpValues) {
-    console.log(values);
+    handleSubmit(values);
+    handleSignUpFormToggle();
   };
 
   return (
@@ -48,18 +44,14 @@ export const SignUpForm = ({handleSignUpFormToggle, handleSubmit}:ISignUpFormTog
       </div>
       <Formik
         initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={(values, actions) => handleSignUpSubmit(values)}
+        validationSchema={SignUpSchema}
+        onSubmit={(values,{resetForm}) => {
+          handleSignUpSubmit(values)
+          resetForm();
+        }}
       >
         {({ errors, touched }) => (
           <Form className="flex flex-col gap-6">
-            <FormInput
-              required={true}
-              labelText="Username"
-              name="username"
-              placeholder="Username"
-              type="text"
-            />
             <FormInput
               required={true}
               labelText="Email"

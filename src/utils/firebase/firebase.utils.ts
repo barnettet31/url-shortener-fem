@@ -6,7 +6,10 @@ import {
   createUserWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
-  signInWithEmailAndPassword
+  signInWithEmailAndPassword,
+  NextOrObserver,
+  User,
+  UserCredential
 } from "firebase/auth";
 import {
   getFirestore,
@@ -45,13 +48,14 @@ export const signInWithGooglePopUp = () =>
   signInWithPopup(auth, googleProvider);
 export const db = getFirestore();
 
-export const createUserDocumentFromAuth = async (userAuth: any, additionalInformation:any ={}) => {
+export type AdditionalInformation = {
+  username?:string;
+}
+export const createUserDocumentFromAuth = async (userAuth: User, additionalInformation:AdditionalInformation= {} as AdditionalInformation) => {
   if(!userAuth) return;
   const userDocRef = doc(db, "users", userAuth.uid);
-  console.log(userDocRef);
 
   const userSnapShot = await getDoc(userDocRef);
-  console.log(userSnapShot);
 
   if (!userSnapShot.exists()) {
     const { displayName, email } = userAuth;
@@ -73,12 +77,28 @@ export const createUserDocumentFromAuth = async (userAuth: any, additionalInform
 export const createAuthUserWithEmailAndPassword = async (
   email: string,
   password: string
-) => {
+):Promise<UserCredential | void> => {
   if (!email || !password) return;
   return await createUserWithEmailAndPassword(auth, email, password);
 };
 
-export const signInAuthUserWithEmailAndPassword = async(email:string, password:string) =>{
+export const signInAuthUserWithEmailAndPassword = async(email:string, password:string):Promise<UserCredential | void> =>{
   if (!email || !password) return;
   return await signInWithEmailAndPassword(auth, email, password);
 }
+export const signOutUser = async ():Promise<void>=>await signOut(auth);
+export const onAuthStateChangedListener = (callback:NextOrObserver<User>)=>{
+  onAuthStateChanged(auth, callback);
+}
+export const getCurrentUser = ():Promise<User | null>=>{
+  return new Promise ((resolve, reject)=>{
+    const unsubscribe = onAuthStateChanged(
+      auth,
+      (userAuth)=>{
+        unsubscribe();
+        resolve(userAuth);
+      },
+      reject
+    );
+  });
+};

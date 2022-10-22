@@ -1,13 +1,14 @@
-import { SignUpForm } from "../../components/sign-up/signUpForm.component";
+import { useContext } from "react";
+import { ISignUpValues, SignUpForm } from "../../components/sign-up/signUpForm.component";
+import { UserContext } from "../../services/authentication/auth.context";
 interface ISignUp {
   isShown: boolean;
   handleToggleShow: () => void;
 }
 export const SignUp = ({ isShown, handleToggleShow }: ISignUp) => {
-  //TODO handle transition in shown condition
-  //TODO wrap in a container to hide background
-  const handleSubmit = (values:any)=>{
-    console.log(values);
+  const context = useContext(UserContext)
+  const handleSubmit = ({email, password, confirmPassword}:ISignUpValues)=>{
+    context?.handleSignUp?.(email, password);
   }
   return (
     <div

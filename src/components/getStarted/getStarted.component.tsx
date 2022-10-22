@@ -4,6 +4,7 @@ interface IGetStartedProps{
     signedIn:boolean;
 }
 export const GetStarted = ({signedIn}:IGetStartedProps)=>{
+  
     return(
         <div className="max-w-[1108px] mx-auto mt-2 w-[95%]">
         <div className="flex flex-col lg:items-center lg:flex-row gap-9 lg:gap-[100px]">
@@ -21,7 +22,9 @@ export const GetStarted = ({signedIn}:IGetStartedProps)=>{
               Build your brand's recognition and get detailed insights on
               how your links are performing.
             </p>
-            {signedIn? <a href="#shorten-links" className="py-3 px-4 bg-[#2BD0D0] mx-auto lg:mx-0 cursor-pointer hover:bg-[#9AE3E3] text-white rounded-[28px]">Start Shortening Now!</a>:<div onClick={()=>console.log('clicked getStarted')} className="py-3 px-4 bg-[#2BD0D0] mx-auto lg:mx-0 cursor-pointer hover:bg-[#9AE3E3] text-white rounded-[28px]">
+            {signedIn? <div onClick={()=>{
+              document.querySelector('#shorten-links')?.scrollIntoView({behavior:'smooth',})
+            }} className="py-3 px-4 bg-[#2BD0D0] mx-auto lg:mx-0 cursor-pointer hover:bg-[#9AE3E3] text-white rounded-[28px]">Start Shortening Now!</div>:<div onClick={()=>console.log('clicked getStarted')} className="py-3 px-4 bg-[#2BD0D0] mx-auto lg:mx-0 cursor-pointer hover:bg-[#9AE3E3] text-white rounded-[28px]">
               Get Started
             </div>}
           </div>

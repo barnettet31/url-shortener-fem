@@ -1,24 +1,24 @@
 import { FormInput } from "../formInput/formInput.component";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import { UserCredential } from "firebase/auth";
 export interface ISignInValues {
   email: string;
   password: string;
 }
-const validationSchema = Yup.object().shape({
-  email: Yup.string().email().required("Email is required"),
+const SignInSchema = Yup.object().shape({
+  email: Yup.string().email("We need your email.").required("Email is required"),
   password: Yup.string()
-    .length(8)
-    .required("Password is required and must be at leats 8 characters."),
+    .min(8, 'Passwords on shortly have to be at least 8 characters')
+    .required("Password is required."),
 });
+
 interface ISignInFormToggle {
-  handleSignInFormToggle: () => void;
+  handleSignInFormToggle: () => void ;
   handleSubmit: ({
     email,
     password,
-  }: ISignInValues) => Promise<UserCredential | undefined>;
-  handleSignInWithGoogle: () => void;
+  }: ISignInValues) => void;
+  handleSignInWithGoogle?: () => void;
 }
 export const SignInForm = ({
   handleSignInFormToggle,
@@ -30,15 +30,19 @@ export const SignInForm = ({
     password: "",
   };
   const handleSignInSubmit = function (values: ISignInValues) {
-    console.log(values);
+    handleSubmit(values);
   };
-
+const googleSignInHandler = ()=>{
+  handleSignInFormToggle();
+  handleSignInWithGoogle?.();
+}
   return (
     <div className="relative w-11/12 max-w-lg px-8 py-6 mx-auto bg-white rounded-lg shadow-sm lg:max-w-xl">
       <div className="flex justify-center gap-5">
         <h1 className="text-xl lg:text-2xl font-bold text-center text-[#2bd0d0] mb-4">
-          Sign up for Shortly
+          Sign In To Shortly
         </h1>
+
         <svg
           onClick={handleSignInFormToggle}
           xmlns="http://www.w3.org/2000/svg"
@@ -55,12 +59,13 @@ export const SignInForm = ({
           />
         </svg>
       </div>
+   
       <Formik
         initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={(values, actions) => handleSignInSubmit(values)}
+        validationSchema={SignInSchema}
+        onSubmit={(values:ISignInValues)=>handleSignInSubmit(values)}
       >
-        {({ errors, touched }) => (
+       
           <Form className="flex flex-col gap-6 mt-4">
             <FormInput
               required={true}
@@ -85,13 +90,13 @@ export const SignInForm = ({
               </button>
               <button
                 className="py-1 px-4 w-full text-sm  text-center bg-[#2bd0d0] cursor-pointer hover:bg-[#9ae3e3] text-white rounded-[10px]"
-                onClick={handleSignInWithGoogle}
+                onClick={googleSignInHandler}
               >
                 Google Sign In
               </button>
             </div>
           </Form>  
-        )}
+       
       </Formik>
     </div>
   );
