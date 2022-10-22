@@ -6,10 +6,14 @@ interface IHeaderProps {
   handleShowSignUp:()=>void;
   handleShowSignIn:()=>void;
 }
+
 export const Header = ({handleShowSignUp, handleShowSignIn}:IHeaderProps) => {
     const [open, setOpen] = useState(false);
     const handleToggleMenu = ()=> setOpen(!open);
- 
+ const handleAuthClick = (handleMethod:()=>void)=>{
+  handleToggleMenu();
+ handleMethod();
+ }
   return (
     <header className="relative flex items-center justify-between px-6 pt-10 lg:max-w-[1100px] mx-auto lg:px-0">
       <Link to="/"><img
@@ -30,15 +34,12 @@ export const Header = ({handleShowSignUp, handleShowSignIn}:IHeaderProps) => {
           </Link>
         </ul>
         <ul className="flex flex-col items-center justify-between gap-[30px] lg:gap-9 lg:justify-center py-8 lg:w-auto w-[85%]  lg:flex-row">
-          <p onClick={handleShowSignIn} className="w-[85%] self-center text-center lg:hover:text-black cursor-pointer">
+          <p onClick={()=>handleAuthClick(handleShowSignIn)} className="w-[85%] self-center text-center lg:hover:text-black cursor-pointer">
             <li>Login</li>
           </p>
           <button
        
-            onClick={()=>{
-              handleToggleMenu();
-              handleShowSignUp();
-            }}
+            onClick={()=>handleAuthClick(handleShowSignUp)}
             className=" cursor-pointer w-full h-full block lg:inline lg:w-auto lg:px-6 text-center py-3 bg-[#2bd0d0] rounded-[28px] lg:text-white hover:bg-[#9AE3E3] lg:py-1"
           >
             <li>SignUp</li>
