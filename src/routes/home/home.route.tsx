@@ -1,3 +1,4 @@
+import { handleURLShortenRequest } from "../../api/urlShortener";
 import { BoostLinks } from "../../components/boostLinks/boostLinks.component";
 import { CopyItemList } from "../../components/copyItemList/copyItemList.component";
 import { GetStarted } from "../../components/getStarted/getStarted.component";
@@ -8,7 +9,10 @@ interface IHomeProps {
   isSignedIn: boolean;
 }
 export const Home = ({ isSignedIn }: IHomeProps) => {
-  const handleSubmit = (link: string) => alert(link);
+  const handleSubmit = async(link: string) => {
+    const data = await handleURLShortenRequest(link);
+    console.log(data);
+  }
   return (
     <>
       <main>
