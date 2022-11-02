@@ -17,7 +17,6 @@ export const Header = ({handleShowSignUp, handleShowSignIn, user}:IHeaderProps) 
   handleToggleMenu();
  handleMethod();
  }
- console.log(user)
   return (
     <header className="relative flex items-center justify-between px-6 pt-10 lg:max-w-[1100px] mx-auto lg:px-0">
       <Link to="/"><img

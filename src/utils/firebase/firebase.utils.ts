@@ -20,7 +20,12 @@ import {
   writeBatch,
   query,
   getDocs,
+  arrayUnion,
+  updateDoc,
+  addDoc,
 } from "firebase/firestore";
+import { IUrl } from "../../api/urlShortener";
+import { IArrayOfUrls } from "../../components/copyItemList/copyItemList.component";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCIxPW6EGqgeCg9aTcuuwsKdwm1ZHt6mYo",
@@ -102,3 +107,38 @@ export const getCurrentUser = ():Promise<User | null>=>{
     );
   });
 };
+
+export const getUrlDocs = async(userAuth:User)=>{
+if(!userAuth) return null;
+const urlDocRef = doc(db,"urls", userAuth.uid);
+const urlDocSnapShot = await getDoc(urlDocRef);
+if(!urlDocSnapShot.exists()) return []
+return urlDocSnapShot.data()["urls"]
+
+}
+export const setUrlDocs = async(userAuth:User, urlInfo:IUrl)=>{
+if(!userAuth) return null; 
+const urlDocRef = doc(db, "urls", userAuth.uid);
+const urlDocSnapShot = await getDoc(urlDocRef);
+if(urlDocSnapShot.exists()){
+ try{
+  return await updateDoc(urlDocRef, {
+    urls:arrayUnion(urlInfo)
+  })
+  }
+  catch(e){
+    throw e;
+  }
+}else{
+  try{
+    await setDoc(urlDocRef, {
+      urls:arrayUnion(urlInfo)
+    })
+  }catch(e){
+    throw e;
+  }
+}
+
+ 
+
+}

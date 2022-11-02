@@ -5,6 +5,7 @@ import App from "./App";
 import { HashRouter } from "react-router-dom";
 
 import { UserProvider } from "./services/authentication/auth.context";
+import { UrlProvider } from "./services/urls/urls.context";
 
 
 const root = ReactDOM.createRoot(
@@ -12,12 +13,12 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-
-      <HashRouter>
-        <UserProvider>  
-        <App />
-        </UserProvider>
-      </HashRouter>
-
+    <HashRouter>
+      <UserProvider>
+        <UrlProvider>
+          <App />
+        </UrlProvider>
+      </UserProvider>
+    </HashRouter>
   </React.StrictMode>
 );

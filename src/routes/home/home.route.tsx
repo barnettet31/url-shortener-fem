@@ -1,17 +1,20 @@
+import { useContext } from "react";
 import { handleURLShortenRequest } from "../../api/urlShortener";
 import { BoostLinks } from "../../components/boostLinks/boostLinks.component";
 import { CopyItemList } from "../../components/copyItemList/copyItemList.component";
 import { GetStarted } from "../../components/getStarted/getStarted.component";
 import { ShortenInput } from "../../components/shortenInput/shortenInput.component";
 import { StatisticsSection } from "../../components/statisticsSection/statisticsSection.component";
+import { UrlContext } from "../../services/urls/urls.context";
 
 interface IHomeProps {
   isSignedIn: boolean;
 }
 export const Home = ({ isSignedIn }: IHomeProps) => {
+  const {data, setUrls} = useContext(UrlContext);
   const handleSubmit = async(link: string) => {
     const data = await handleURLShortenRequest(link);
-    console.log(data);
+    setUrls(data);
   }
   return (
     <>
@@ -28,7 +31,7 @@ export const Home = ({ isSignedIn }: IHomeProps) => {
         >
           <div className="mx-auto max-w-[1108px]">
             <CopyItemList
-              items={[]}
+              items={data}
             />
             <StatisticsSection />
           </div>

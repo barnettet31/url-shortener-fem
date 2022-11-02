@@ -24,7 +24,6 @@ interface IProps {
 export const UserProvider = ({ children }: IProps) => {
   const [user, setUser] = useState<User | null>(null);
   const [error, setError] = useState<string | null>(null);
-    console.log(error);
   const handleManualSignIn = async ({ email, password }: ISignInValues) => {
     try {
       await signInAuthUserWithEmailAndPassword(email, password);
@@ -62,7 +61,6 @@ export const UserProvider = ({ children }: IProps) => {
   };
   useEffect(() => {
     handleAuthStateChanged((user)=>{
-        console.log(user);
         setUser(user)
     });
   }, []);

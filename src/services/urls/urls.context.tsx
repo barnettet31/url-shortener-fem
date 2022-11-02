@@ -1,5 +1,7 @@
-import React, {createContext, useState} from 'react';
+import React, {createContext, useContext, useEffect, useState} from 'react';
 import {IUrl} from '../../api/urlShortener'
+import { getCurrentUser, getUrlDocs, setUrlDocs } from '../../utils/firebase/firebase.utils';
+import { UserContext } from '../authentication/auth.context';
 interface IContextProps {
     children?: React.ReactNode;
 }
@@ -12,12 +14,15 @@ const urlIntialState:IUrlContext = {
     data:[],
     setUrls:(data)=>{}
 };
-const UrlContext = createContext<IUrlContext>(urlIntialState);
+export const UrlContext = createContext<IUrlContext>(urlIntialState);
 
 
 export const UrlProvider = ({children}:IContextProps)=>{
+
     const [data, setData] = useState<IUrl[]>([] as IUrl[]);
-    const setUrls = (data:IUrl)=>{
+    const context = useContext(UserContext);
+    const setUrls = async (data:IUrl)=>{
+        if(context?.user) await setUrlDocs(context.user, data);
         setData((prevState:IUrl[])=>{
             return [...prevState, data];
         })
@@ -26,6 +31,15 @@ export const UrlProvider = ({children}:IContextProps)=>{
         data ,
         setUrls
     }
+    useEffect(()=>{
+      const fetchCurrentData = async ()=>  {
+        if(!context?.user) return setData([]);
+        const currentDocs = await getUrlDocs(context.user);
+        setData((prevState:IUrl[])=>[...prevState, ...currentDocs ])
+    }
+    fetchCurrentData();
+
+    },[context?.user])
     return <UrlContext.Provider value={value}>{children}</UrlContext.Provider>
 }
 

@@ -20,8 +20,9 @@ export const ShortenInput = ({handleSubmit}:IShortenInputProps) => {
     <div id="shorten-links" className="w-[87%] absolute -bottom-32 lg:-bottom-24 max-w-[1108px] lg:w-full mx-auto  bg-mobile-shorten lg:bg-desktop-shorten bg-no-repeat bg-top lg:bg-right bg-cover bg-[#3A3054]  py-[3.25rem] rounded-[10px] px-6 lg:px-16">
       <Formik
         initialValues={initialValues}
-        onSubmit={(values, actions) => {
+        onSubmit={(values:InputValues, {resetForm}) => {
          handleSubmit(values.domainName);
+         resetForm();
         }}
         validationSchema={DomainSchema}
       >

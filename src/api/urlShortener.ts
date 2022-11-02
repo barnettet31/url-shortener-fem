@@ -9,7 +9,6 @@ export const handleURLShortenRequest = async function (url:string):Promise<IUrl>
         
         const response = await fetch(`https://api.shrtco.de/v2/shorten?url=${url}`);
         const {result} = await response.json();
-        console.log(result);
         return {
             shortLink:result.short_link,
             fullShortLink:result.full_short_link,

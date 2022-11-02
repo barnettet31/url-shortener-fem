@@ -1,9 +1,9 @@
+import { IUrl } from "../../api/urlShortener";
 import { CopyItem } from "../copyItem/copyItem.component";
-import { ICopyItemProps } from "../copyItem/copyItem.interface";
 import { NoLinks } from "./noLinks.component";
-interface IArrayOfCopyItems extends Array<ICopyItemProps> {}
+export interface IArrayOfUrls extends Array<IUrl> {}
 interface IListProps {
-  items: IArrayOfCopyItems;
+  items: IArrayOfUrls;
 }
 
 
@@ -15,7 +15,9 @@ export const CopyItemList = ({ items }: IListProps) => {
           <CopyItem
             key={item.originalLink + Math.random()}
             originalLink={item.originalLink}
-            shortenedLink={item.shortenedLink}
+            shortLink={item.shortLink}
+            fullShortLink={item.fullShortLink}
+            dateRequested={item.dateRequested}
           />
         );
       }):<NoLinks/>}
