@@ -78,22 +78,22 @@ export const Footer = () => {
             </div>
           </div>
           <div className="flex gap-6 lg:w-1/5">
-            <a href="https://www.facebook.com" target="_blank" rel="noreferrer">
+            <a href="https://www.facebook.com" target="_blank" aria-label="facebook icon" rel="noreferrer">
               <div className="w-6 h-6 bg-no-repeat bg-facebook icon-hover "></div>
             </a>
-            <a href="https://www.twitter.com" target="_blank" rel="noreferrer">
+            <a href="https://www.twitter.com" target="_blank" aria-label="twitter icon"rel="noreferrer">
               <div className="w-6 h-6 bg-no-repeat bg-twitter icon-hover"></div>
             </a>
             <a
               href="https://www.pinterest.com"
               target="_blank"
-              rel="noreferrer">
+              rel="noreferrer" aria-label="pintrest icon">
               <div className="w-6 h-6 bg-no-repeat bg-pintrest icon-hover"></div>
             </a>
             <a
               href="https://www.instagram.com"
               target="_blank"
-              rel="noreferrer">
+              rel="noreferrer" aria-label="instagram icon">
               <div className="w-6 h-6 bg-no-repeat bg-instagram icon-hover"></div>
             </a>
           </div>
