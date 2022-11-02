@@ -21,6 +21,7 @@ export const FormInput = ({
       <label className="hidden text-sm font-medium text-[#34313D] text-semi-bold md:block" htmlFor={name}>{labelText}</label>
       <div className="">
         <Field
+          id={name}
           name={name}
           type={type}
           placeholder={placeholder}
